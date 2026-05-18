@@ -1,0 +1,41 @@
+{
+  "name": "playwright-cucumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+ 
+  "pretest": "node -e \"['reports/html','reports/json','reports/allure-results'].forEach(d=>require('fs').mkdirSync(d,{recursive:true}))\"",
+
+  "test": "cucumber-js --tags \"not @api\" --format progress-bar --format html:reports/html/report-chromium.html --format json:reports/json/report-chromium.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "test:api": "cucumber-js --tags \"@api\" --format progress-bar --format html:reports/html/report-api.html --format json:reports/json/report-api.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "test:all": "cucumber-js --format progress-bar --format html:reports/html/report-all.html --format json:reports/json/report-all.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "test:smoke": "cucumber-js --tags \"@smoke and not @api\" --format progress-bar --format html:reports/html/report-smoke.html --format json:reports/json/report-smoke.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "test:accessibility": "cucumber-js --tags \"@accessibility\" --format progress-bar --format html:reports/html/report-accessibility.html --format json:reports/json/report-accessibility.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "test:regression": "cucumber-js --tags \"@regression and not @api\" --format progress-bar --format html:reports/html/report-regression.html --format json:reports/json/report-regression.json --format allure-cucumberjs/reporter --format-options \"{\\\"resultsDir\\\":\\\"reports/allure-results\\\"}\"",
+
+  "allure:generate": "npx allure generate reports/allure-results --clean -o reports/allure-report",
+  "allure:open"    : "npx allure open reports/allure-report",
+  "allure:serve"   : "npx allure serve reports/allure-results",
+  "report"         : "npm test && npm run allure:generate && npm run allure:open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@cucumber/cucumber": "^12.8.3",
+    "axe-playwright": "^2.x.x",
+    "playwright": "^1.60.0"
+  },
+  "devDependencies": {
+    "allure-commandline": "^2.41.0",
+    "allure-cucumberjs": "^3.8.0",
+    "axe-playwright": "^2.2.2"
+  }
+}

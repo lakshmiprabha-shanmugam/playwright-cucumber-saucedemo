@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "*.feature": "gherkin"
+  },
+  "cucumberautocomplete.steps": [
+    "features/step_defininitions/**/*.js"
+  ],
+  "cucumberautocomplete.syncfeatures": "features/**/*.feature"
+}
